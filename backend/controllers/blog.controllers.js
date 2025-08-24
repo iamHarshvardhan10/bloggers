@@ -53,3 +53,92 @@ export const createBlog = async (req, res) => {
         })
     }
 }
+
+
+// EDIT BLOG
+
+export const editBlog = async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const blogId = req.params.blogId;
+        if (!userId) {
+            return res.status(404).json({
+                message: 'User Not Found',
+                success: false
+            })
+        }
+
+        const { title, content, tags } = req.body;
+        if (!title || !content || !tags) {
+            return res.status(400).json({
+                message: 'All fields are required',
+                success: false
+            })
+        }
+
+        const updatedBlog = await Blog.findByIdAndUpdate(blogId, {
+            title, content, tags
+
+        }, { new: true })
+
+        if (!updatedBlog) {
+            return res.status(404).json({
+                message: 'Blog with id is not found',
+                success: false
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Blog Edited Successfully',
+            updatedBlog
+        })
+
+
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Internal Server Error',
+            success: false,
+            error: error.message
+        })
+    }
+}
+
+
+// DELETE BLOG
+
+export const deleteBlog = async (req, res) => {
+    try {
+        const { blogId } = req.params;  
+
+        if (!blogId) {
+            return res.status(400).json({
+                message: 'Blog ID required to delete',
+                success: false
+            });
+        }
+
+        const blogExist = await Blog.findById(blogId);
+        if (!blogExist) {
+            return res.status(404).json({
+                message: 'Blog with this ID not found',
+                success: false
+            });
+        }
+
+        const deletedBlog = await Blog.findByIdAndDelete(blogId);
+
+        return res.status(200).json({
+            message: 'Blog deleted successfully',
+            success: true,
+            deletedBlog
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Internal Server Error',
+            success: false,
+            error: error.message
+        });
+    }
+};
