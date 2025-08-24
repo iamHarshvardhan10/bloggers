@@ -2,7 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import databaseConnection from './config/db.js';
 dotenv.config()
-import authRoutes from './routes/auth.router.js'
+import authRoutes from './routes/auth.router.js';
+import blogRoutes from './routes/blog.router.js'
 import cookieParser from 'cookie-parser';
 
 const PORT = process.env.PORT || 8000
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/auth', authRoutes)
+app.use('/api/v1/blog', blogRoutes)
 
 
 app.listen(PORT, () => {

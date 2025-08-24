@@ -77,7 +77,7 @@ export const login = async (req, res) => {
         // DE HASHED The PASSWORD
         const validPassword = await bcrypt.compare(password, userExist.password)
         if (validPassword) {
-            const token = await jwt.sign({ id: userExist._id, userName: userExist.userName }, process.env.JWT_TOKEN, { expiresIn: '24h' })
+            const token = await jwt.sign({ id: userExist._id, userName: userExist.userName, role: userExist.role }, process.env.JWT_TOKEN, { expiresIn: '24h' })
 
             const { password: pass, ...rest } = userExist._doc;
 
