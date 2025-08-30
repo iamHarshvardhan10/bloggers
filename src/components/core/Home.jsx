@@ -9,6 +9,7 @@ import {
   Youtube,
 } from "lucide-react";
 import Contact from "./Contact";
+import Blog from "./Blog";
 
 const Home = () => {
   return (
@@ -44,7 +45,7 @@ const Home = () => {
           </Button>
         </div>
       </div>
-      <Contact />
+      <Blog />
     </>
   );
 };
