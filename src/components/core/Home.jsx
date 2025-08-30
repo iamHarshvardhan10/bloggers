@@ -34,7 +34,7 @@ const Home = () => {
           Stories That <span className="text-[#DE6012]">Inspire</span> , Ideas
           That <span className="text-[#DE6012]">Last</span>
         </h1>
-        <p className="text-xl text-white">
+        <p className="text-md text-gray-400">
           Discover thoughtfully written stories, fresh ideas, and perspectives
           that inspire your day.
         </p>
