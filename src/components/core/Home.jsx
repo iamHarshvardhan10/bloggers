@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { Badge } from "../ui/badge";
 
 const Home = () => {
   return (
-    <div className='text-white mt-10'>Home</div>
-  )
-}
+    <div className="">
+      
+    </div>
+  );
+};
 
-export default Home
+export default Home;
