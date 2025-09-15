@@ -17,7 +17,7 @@ const App = () => {
   console.log(handleLayout);
   return (
     <div className="app">
-      {!handleLayout && <Navbar />}
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blogs" element={<BlogsPage />} />
